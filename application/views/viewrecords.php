@@ -20,7 +20,7 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -42,34 +42,54 @@
     </nav>
 
    <div class = "container">
-		<form role="form" method="POST" id="user_form" style="
+		<?php //pre($answer); ?>
+    <table class='table'>
+        <tr><th>email</th>
+            <th>mobile</th>
+            <th>delete</th>
+            <th>edit</th>
+        </tr>
+        <?php if(is_array($answer)): foreach($answer as $value):?>
+        <tr><th><?php echo $value['mobile']?></th>
+            <th><?php echo $value['email']?></th>
+            <th><a class = 'del' for="<?php echo $value['id']; ?>" href = "#">delete</a></th>
+            <th><a class = 'edit' for="<?php echo $value['id']; ?>"  href = "#" data-toggle="modal" data-target="#myModal">edit</a></th>
+        </tr>
+      <?php endforeach; endif;?>
+    </table>
+	</div><!-- container -->
+  <!-- Model box -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+            <form role="form" method="POST" id="user_form" style="
     margin-top: 8%">
-		  <div class="form-group">
+      <div class="form-group">
         <div class="form-group">
         <label for="pwd">Mobile No.:</label>
         <input type="text" class="form-control" name="mobile" id="mobile">
       </div>
-		    <label for="email">Email address:</label>
-		    <input type="text" class="form-control" name="email" id="email">
-		  </div>
-		  <div class="form-group">
-		    <label for="pwd">Password:</label>
-		    <input type="password" class="form-control" name="pwd" id="pwd">
-		  </div>
-       <div class="form-group">
-        <label for="pwd">Confirm Password:</label>
-        <input type="password" class="form-control" name="cnfpwd" id="cnfpwd">
+        <label for="email">Email address:</label>
+        <input type="text" class="form-control" name="email" id="email">
+        <input type="text" class="form-control" name="id" id="id">
       </div>
-		  <div class="checkbox">
-		    <label><input type="checkbox"> Remember me</label>
-		  </div>
-		  <button type="button" class="btn btn-default btn_add">Submit</button>
-		</form>
+    </form>
      <div class="error">
 
   </div>
-	</div><!-- container -->
- 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn_update">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </body>
 </html>

@@ -45,7 +45,7 @@ if ( ! function_exists('js'))
 		// pre($result);
 		if(is_array($result)):
 			foreach($result as $val):
-				echo link_tag("assets/js/".$val);
+				echo "<script src=".base_url()."assets/js/".$val."></script>";
 			endforeach;	
 		endif;	
 	}
