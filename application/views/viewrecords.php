@@ -43,40 +43,48 @@
 
    <div class = "container">
 		<?php //pre($answer); ?>
-    <table class='table'>
-        <tr><th>email</th>
-            <th>mobile</th>
-            <th>delete</th>
-            <th>edit</th>
+    <table class='table table-hover'>
+         <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Delete</th>
+            <th>Update Details</th>
         </tr>
+        </thead>
+         <tbody>
         <?php if(is_array($answer)): foreach($answer as $value):?>
-        <tr><th><?php echo $value['mobile']?></th>
+        <tr>
+            <th><?php echo $value['Name'] ?></th>
+            <th><?php echo $value['mobile']?></th>
             <th><?php echo $value['email']?></th>
-            <th><a class = 'del' for="<?php echo $value['id']; ?>" href = "#">delete</a></th>
-            <th><a class = 'edit' for="<?php echo $value['id']; ?>"  href = "#" data-toggle="modal" data-target="#myModal">edit</a></th>
+            <th>
+            <button type="button" class="del btn btn-danger" for="<?php echo $value['id']; ?>" href = "#">delete</button></th>
+            <th><button type="button" class="edit btn btn-info" for="<?php echo $value['id']; ?>"  href = "#" data-toggle="modal" data-target="#myModal">Edit</button>
+            </th>
         </tr>
       <?php endforeach; endif;?>
+      </tbody>
     </table>
 	</div><!-- container -->
   <!-- Model box -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="
+    margin-top: 8%">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Edit Records</h4>
       </div>
       <div class="modal-body">
-            <form role="form" method="POST" id="user_form" style="
-    margin-top: 8%">
+            <form role="form" method="POST" id="user_form">
       <div class="form-group">
-        <div class="form-group">
-        <label for="pwd">Mobile No.:</label>
+         <input type="text" class="form-control" name="id" id="id" readonly>
+         <label for="Name">Name:</label>
+        <input type="text" class="form-control" name="Name" id="Name">
+        <label for="mobile">Mobile No.:</label>
         <input type="text" class="form-control" name="mobile" id="mobile">
-      </div>
-        <label for="email">Email address:</label>
-        <input type="text" class="form-control" name="email" id="email">
-        <input type="text" class="form-control" name="id" id="id">
       </div>
     </form>
      <div class="error">

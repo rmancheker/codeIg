@@ -1,12 +1,13 @@
 <?php
 if(!defined('BASEPATH'))exit('No Access');
+
 class register_model extends CI_Model{
 	function insert_data($data){
 		return $this->db->insert('user',$data);
 	}
 
 	function showrecords(){
-		$this->db->select('id,mobile,email')->from('user');
+		$this->db->select('id,Name,mobile,email')->from('user');
 		// $this->db->where("id",9)
 		$records = $this->db->get();
 		// pre($records);
@@ -26,8 +27,7 @@ class register_model extends CI_Model{
 	}
 
 	function updatedetails($data,$id){
-		// pre($data);
-		// pre($id);
+		//pre($data);
 		$this->db->where('id',$id);
 		return $this->db->update('user',$data);
 	}
@@ -35,7 +35,6 @@ class register_model extends CI_Model{
 	function selectrecord($id){
 		// $this->db->where('id', $id);
 		// return $this->db->get("user")->result_array();
-
 		return $this->db->get_where("user",array("id"=>$id))->result_array();
 
 	}

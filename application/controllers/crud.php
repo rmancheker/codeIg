@@ -5,12 +5,8 @@ class crud extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('register_model');
-
-
-
-
-
 	}
+
 	function index(){
 		$this->load->view('register');
 	}
@@ -19,7 +15,6 @@ class crud extends CI_Controller{
 		$result = $this->input->post();
 		print_r($result);
 	}
-
 
 	function showrecords(){
 		$records = $this->register_model->showrecords();
@@ -39,14 +34,12 @@ class crud extends CI_Controller{
 	function editData(){
 		$result = $this->input->post("val");
 		$val = $this->register_model->selectrecord($result);
-		// pre($val);
-		echo $val[0]['email']."#".$val[0]['mobile'];
+		echo $val[0]['Name']."#".$val[0]['mobile'];
 	}
-
 
 	function userdata(){
 		$dataarr = $this->input->post();
-		//$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
+		$this->form_validation->set_rules('Name', 'Name', 'trim|required|min_length[5]|max_length[50]');
 		$this->form_validation->set_rules('mobile','mobile','trim|integer|required|exact_length[10]');
 		$this->form_validation->set_rules('email','email','trim|valid_email|required|is_unique[user.email]');
 		$this->form_validation->set_rules('pwd', 'password', 'trim|required|min_length[5]|matches[cnfpwd]|alpha_numeric');
@@ -64,31 +57,25 @@ class crud extends CI_Controller{
 				echo 1;
 				// redirect(base_url().'index.php/crud/showrecords');
 			}else{
-				echo "Error is saving data";
+				echo "Error while saving data!!!";
 			}
-
 		}	
-
 	}
 
 	function updatedata(){
 		$dataarr = $this->input->post();
 		//pre($dataarr);
+		$this->form_validation->set_rules('Name','Name','trim|required|min_length[5]|max_length[50]');
 		$this->form_validation->set_rules('mobile','mobile','trim|integer|required|exact_length[10]');
-		$this->form_validation->set_rules('email','email','trim|valid_email|required|is_unique[user.email]');
 		if($this->form_validation->run()==false){
 			echo validation_errors();
 		}else{
 			$id =  $this->input->post('id');
-			array_pop($dataarr);
 			echo $this->register_model->updatedetails($dataarr,$id);
-
-
 
 			}
 	}
 
 }
-//umeshpatel120@gmail.com
 
 ?>

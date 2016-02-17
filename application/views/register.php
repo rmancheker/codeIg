@@ -44,11 +44,15 @@
    <div class = "container">
 		<form role="form" method="POST" id="user_form" style="
     margin-top: 8%">
+       <div class="form-group">
+        <label for="pwd">Name:</label>
+        <input type="text" class="form-control" name="Name" id="Name">
+      </div>
 		  <div class="form-group">
-        <div class="form-group">
         <label for="pwd">Mobile No.:</label>
         <input type="text" class="form-control" name="mobile" id="mobile">
       </div>
+       <div class="form-group">
 		    <label for="email">Email address:</label>
 		    <input type="text" class="form-control" name="email" id="email">
 		  </div>

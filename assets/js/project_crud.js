@@ -72,10 +72,10 @@ $(document).ready(function(){
 			url:path+"crud/editData",
 			data:"val="+$(this).attr("for"),
 			success:function(val){
-				// alert(val);
+				//alert(val);
 				var result = val.split("#");
 				$("#mobile").val(result[1]);
-				$("#email").val(result[0]);
+				$("#Name").val(result[0]);
 				$("#id").val(id);
 			}
 		})
